@@ -1,0 +1,15 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+.form{
+    border: 2px solid gray;
+    padding: 20px;
+
+}
+.form input{
+    padding: 10px;
+}
+.info{
+    text-align: center;
+}
