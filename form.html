@@ -21,6 +21,7 @@ function validationForm() {
             name.focus();
             return false;
         }
+        return true;
   
        
   
@@ -38,17 +39,19 @@ function validationForm() {
          return true ;
       }
   
-      if( phone == "" || isNaN(phone) || phone < 0 || phone > 10)  {
+      if( phone == "" || phone < 0 && phone > 10)  {
                 alert("Invalid input!");
                 phone.focus();
                 return false;
              }
+             return true;
   
         if (password==""|| password.length<6 ) {
             window.alert("Please enter your password");
             password.focus();
             return false;
         }
+        return true;
   
         if (age<18) {
             alert("must be over 18 years old");
