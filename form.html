@@ -7,90 +7,147 @@
     <title>form validation</title>
     <link rel="stylesheet" href="style.css">
     <script>
-function validationForm() {
-        var name = document.forms["validateform"]["Name"];
-        var email = document.forms["validateform"]["Email"];
-        atpos = email.indexOf("@");
-         dotpos = email.lastIndexOf(".");
-        var password = document.forms["validateform"]["Password"];
-        var age = document.forms["validateform"]["Age"];
-        var phone = document.forms["validateform"]["Phone"];
+function validate() {  
+        var fname = document.reg_form.fname;  
+        var lname = document.reg_form.lname;  
         
-        if (name==null || name=="") {
-            window.alert("Please enter your name.");
-            name.focus();
-            return false;
-        }
-        return true;
-  
+        var email = document.reg_form.email;    
+            var mobile = document.reg_form.mobile;
+        if (fname.value.length <= 0) {  
+            alert("Name is required");  
+            fname.focus();  
+            return false;  
+        }  
+        if (lname.value.length <= 0) {  
+            alert("Last Name is required");  
+            lname.focus();  
+            return false;  
+        }  
        
+    if (email.value.length <= 0) {    
+                alert("Email Id is required");    
+                email.focus();    
+                return false;    
+            }    
+            if (mobile.value.length <= 0) {    
+                alert("Mobile number is required");    
+                mobile.focus();    
+                return false;    
+            }     return false;  }
+        
+            var Slice = function() {
+    var sliceDiv = document.getElementById('slice');
+    var gridX = 4;
+    var gridY = 2;
+    var w = sliceDiv.offsetWidth;
+    var h = sliceDiv.offsetHeight;
+    var img = document.querySelectorAll('#slice img')[0].src;
+    var delay = 0.05;
+
+    console.log(w, h, img);
+
+    this.create = function() {
+        for (x = 0; x < gridX; x++) {
+
+            var width = x * w / gridX + "px";
+            var div = document.createElement("div");
+            document.getElementById('slice').appendChild(div);
+            div.style.left = width;
+            div.style.top = 0; 
+            div.style.width = w / gridX + "px";
+            div.style.height = h + "px";
+            div.style.backgroundImage = "url(" + img + ")";
+            div.style.backgroundPosition = "-" + width;
+            div.style.backgroundSize = w + "px";
+            div.style.transitionDelay = x * delay + "s";
+            sliceDiv.classList.remove('active');
+        } 
   
-        if (email.value == "") {
-            window.alert(
-              "Please enter a valid e-mail .");
-            email.focus();
-            return false;
-        }
-        if (atpos < 1 || ( dotpos - atpos < 2 )) {
-            alert("Check if the email is valid ")
-            document.validateform.Email.focus() ;
-            return false;
-         }
-         return true ;
-      }
-  
-      if( phone == "" || phone < 0 && phone > 10)  {
-                alert("Invalid input!");
-                phone.focus();
-                return false;
-             }
-             return true;
-  
-        if (password==""|| password.length<6 ) {
-            window.alert("Please enter your password");
-            password.focus();
-            return false;
-        }
-        return true;
-  
-        if (age<18) {
-            alert("must be over 18 years old");
-            age.focus();
-            return false;
-        }
-  
-        return true;
-    
+    }
+
+    this.create();
+
+    document.getElementById("slice").onmouseover = function() {mouseOver()};
+    document.getElementById("slice").onmouseout = function() {mouseOut()};
+   
+    function mouseOver() {
+        sliceDiv.classList.add('active');  
+    }
+
+    function mouseOut() {
+        sliceDiv.classList.remove('active'); 
+    }
+
+}
+
+window.onload = function() {
+    var slice = new Slice();
+};
+
+
     </script>
 </head>
 <body>
-    <form class="form" name="validateform" action="form.html" method="get" onsubmit="return validationForm()">
-        <h2 class="info">Enter your information</h2>
-        <label for="">Enter your name</label>
-        <br>
-        <input type="text" name="Name" placeholder="Name" required>
-        <br>
-        <label for="">enter your email</label><br>
-        <input type="email" name="Email" placeholder="Email" required>
-        <br>
-        <label for="">Enter password</label>
-        <br>
-        <input type="password" name="Password" placeholder="password" required>
-        <br>
+    <header>
+    <div id="slice">
+        <img src="images/img1.jfif" alt="">
+
+    </div>
+    
+
+</header>
+
+<br><br>
+
+<section>
+    <div class="formval">
+
+    <form method="" action="" name="reg_form" onsubmit="return validate()">    
+        <h2>Enter your information</h2>    
+        <table>    
+            <tr>    
+                <td><label>FName: </label></td>    
+                <td>    
+                    <input type="text" name="fname" placeholder="First Name">    
+                </td>    
+            </tr>    
+            <tr>    
+                <td><label>LName: </label></td>    
+                <td>    
+                    <input type="text" name="lname" placeholder="Last Name">    
+                </td>    
+            </tr>    
+               
+             
+            <tr>    
+                <td><label>Email: </label></td>    
+                <td>    
+                    <input type="text" name="email" placeholder="example@gmail.com">    
+                </td>    
+            </tr>    
+            <tr>    
+                <td><label>Phone: </label></td>    
+                <td>    
+                    <input type="number" name="mobile">    
+                </td>    
+            </tr>  
+            <tr>
+                <td>message:</td>
+                <td>
+                <textarea name="text" id="" cols="30" rows="10"></textarea>
+            </td>
+            </tr>  
+                
+            <tr>    
+                <td>    
+                    <input type="submit" name="submit" value="Submit"> 
+  
+                      
+                </td>    
+            </tr>             
+        </table>    
+    
         
-        <label for="">Enter your age</label>
-        <br>
-        <input type="text" name="Age" placeholder="Age" required>
-        <br>
-        <label for="">Enter your Number phone</label>
-        <br>
-        <input type="text" name="Phone" placeholder="Phone" required><br>
-        <label for="">Enter your message</label>
-        <br>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <br>
-        <input type="submit" value="submit">
-        <button onclick="myFunction()">change mode</button>
 
 <script>
 function myFunction() {
@@ -100,8 +157,11 @@ function myFunction() {
 </script>
         
     </form>
- 
-    
+</div>
+<div class="button">     
+       <button onclick="myFunction()">change mode</button>
+</div>
+</section>
 
 </body>
 </html>
